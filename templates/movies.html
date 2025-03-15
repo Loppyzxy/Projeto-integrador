@@ -8,6 +8,127 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3658/3658993.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 80%;
+            max-width: 900px;
+        }
+
+        .modal iframe {
+            width: 100%;
+            height: 500px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -10vh;
+            right: -30vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            border: none;
+            font-size: 3vh;
+            cursor: pointer;
+            border-radius: 2vh;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: rgba(255, 0, 0, 0.8);
+        }
+
+        .trailer-btn {
+            background-color: #ff5c5c;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .trailer-btn i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .trailer-btn:hover {
+            background-color: #ff4040;
+            transform: scale(1.05);
+        }
+
+        .trailer-btn:focus {
+            outline: none;
+        }
+
+        .trailer-btn:active {
+            transform: scale(1);
+        }
+
+        .modal-content {
+            animation: modalEntry 0.5s ease-in-out;
+        }
+
+        @keyframes modalEntry {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .page-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .page-links .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .page-links .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .page-links span {
+            font-size: 1.2rem;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -26,34 +147,74 @@
                 <p><strong>Data de Lançamento:</strong> {{ movie.release_date }}</p>
                 <p><strong>Avaliação:</strong> {{ movie.vote_average }}/10</p>
                 <p><strong>Resumo:</strong> {{ movie.overview }}</p>
-                <a href="https://www.themoviedb.org/movie/{{ movie.id }}" target="_blank">Mais...</a>
+                <a href="https://www.themoviedb.org/movie/{{ movie.id }}" target="_blank">Ver mais no TMDB:</a>
+
+                {% if movie.trailer_key %}
+                <button class="trailer-btn" onclick="openModal('{{ movie.trailer_key }}')">
+                    <i class="fas fa-play-circle"></i> Assistir Trailer
+                </button>
+                {% else %}
+                <p style="color: rgb(75, 61, 61); font-size: 5vh; text-align: center; padding-top: 3vh;"><strong>Trailer
+                        não
+                        disponível.</strong></p>
+                {% endif %}
+
             </div>
             {% endfor %}
-        
+
             {% if movies|length < 21 %}
-                {% for i in range(21 - movies|length) %}
-                    <div class="movie empty"></div> 
-                {% endfor %}
+            {% for i in range(21 - movies|length) %}
+            <div class="movie empty"></div>
+            {% endfor %}
             {% endif %}
         </div>
 
-
-
         <div class="page-links">
             {% if current_page > 1 %}
-            <a
-                href="/movies?genre={{ genre }}&year={{ year }}&rating={{ rating }}&language={{ language }}&page={{ current_page - 1 }}">Anterior</a>
+            <a href="/movies?genre={{ genre }}&year={{ year }}&rating={{ rating }}&language={{ language }}&page={{ current_page - 1 }}"
+                class="btn">Anterior</a>
             {% endif %}
 
             <span>Página {{ current_page }} de {{ total_pages }}</span>
 
-            {% if current_page < total_pages %} <a
-                href="/movies?genre={{ genre }}&year={{ year }}&rating={{ rating }}&language={{ language }}&page={{ current_page + 1 }}">
-                Próxima</a>
-                {% endif %}
+            {% if current_page < total_pages %}
+            <a href="/movies?genre={{ genre }}&year={{ year }}&rating={{ rating }}&language={{ language }}&page={{ current_page + 1 }}"
+                class="btn">Próxima</a>
+            {% endif %}
         </div>
     </div>
+
+    <div id="trailerModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <iframe id="trailerIframe" src="" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
     </div>
+
+    <script>
+        function openModal(trailerKey) {
+            var modal = document.getElementById("trailerModal");
+            var iframe = document.getElementById("trailerIframe");
+            iframe.src = "https://www.youtube.com/embed/" + trailerKey;
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("trailerModal");
+            var iframe = document.getElementById("trailerIframe");
+            iframe.src = "";
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            var modal = document.getElementById("trailerModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 
 </html>
