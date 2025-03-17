@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesquisa de Atores - MVH</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Adicionei o link para o Font Awesome -->
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
 <body>
     <a href="{{ url_for('index') }}" class="back-btn">
         <i class="fas fa-arrow-left"></i> Voltar
@@ -16,14 +15,14 @@
         <h1>Pesquisa de Atores|Atrizes</h1>
         <form action="{{ url_for('actors') }}" method="GET" class="search-form">
             <input type="text" name="query" placeholder="Pesquise por um ator..." required>
-            <button type="submit" class="search-button"><i class="fas fa-search"></i></button> <!-- Classe para o botão -->
+            <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
         </form>
 
         <div class="actors">
             {% for actor in actors %}
             <div class="actor">
                 <img src="https://image.tmdb.org/t/p/w500{{ actor.profile_path }}" alt="{{ actor.name }}">
-                <h2>{{ actor.name }}</h2> <!-- Nome do ator abaixo da imagem -->
+                <h2>{{ actor.name }}</h2>
                 <a href="{{ url_for('actor_details', actor_id=actor.id) }}">Ver Filmes</a>
             </div>
             {% endfor %}
@@ -35,17 +34,17 @@
         body {
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centraliza o conteúdo horizontalmente */
-            justify-content: center; /* Centraliza o conteúdo verticalmente */
-            min-height: 100vh; /* Garante que o corpo ocupe toda a altura da tela */
-            background-color: #f4f4f9; /* Cor de fundo */
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; 
+            background-color: #f4f4f9; 
         }
 
         .search-form {
             display: flex;
             align-items: center;
             margin-bottom: 0.6vh;
-            justify-content: center; /* Centraliza o formulário */
+            justify-content: center; 
     
             
         }
@@ -54,32 +53,32 @@
             padding: 2vh;
             font-size: 1rem;
             border: 0.1vh solid #ccc;
-            border-radius: 0.8vh 0 0 1vh; /* Bordas arredondadas apenas do lado esquerdo */
-            width: 40vh; /* Defina uma largura fixa para o campo de entrada */
-            height: 5.2vh; /* Defina uma altura fixa para o campo de entrada */
+            border-radius: 0.8vh 0 0 1vh; 
+            width: 40vh; 
+            height: 5.2vh; 
         }
 
         .search-button {
-            padding: 0; /* Remova o padding para ajustar a altura */
+            padding: 0; 
             background-color: rgb(31, 0, 0);
             color: white;
             border: none;
-            border-radius: 0 1vh 1vh 0; /* Bordas arredondadas apenas do lado direito */
+            border-radius: 0 1vh 1vh 0; 
             cursor: pointer;
-            font-size: 1rem; /* Tamanho do texto do botão */
-            width: 10vh; /* Defina uma largura fixa para o botão */
-            height: 5.3vh; /* Defina uma altura fixa para o botão */
-            display: flex; /* Para centralizar o ícone */
-            align-items: center; /* Centraliza verticalmente */
-            justify-content: center; /* Centraliza horizontalmente */
+            font-size: 1rem; 
+            width: 10vh; 
+            height: 5.3vh; 
+            display: flex;
+            align-items: center; 
+            justify-content: center;
         }
 
         .search-button i {
-            font-size: 1.2rem; /* Tamanho do ícone da lupa */
+            font-size: 1.2rem; 
         }
 
         .search-button:hover {
-            background-color: rgb(10, 0, 0); /* Cor do botão ao passar o mouse */
+            background-color: rgb(10, 0, 0);
         }
 
         .actors {
@@ -103,7 +102,7 @@
         }
 
         .actor h2 {
-            font-size: 2rem; /* Ajuste o tamanho da fonte do nome do ator */
+            font-size: 2rem; 
             margin: 1.5vh 0;
             color: rgb(29, 0, 0);
             font-family: "Castoro Titling", serif;
@@ -120,7 +119,7 @@
         }
 
         .actor a:hover {
-            background-color:rgb(10, 0, 0); /* Cor do botão ao passar o mouse */
+            background-color:rgb(10, 0, 0); 
         }
     </style>
 </body>

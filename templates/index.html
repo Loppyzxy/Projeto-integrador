@@ -15,15 +15,12 @@
     <div class="container">
         <h1>MVH</h1>
 
-        <!-- Botão "Sobre" -->
         <div class="header-buttons">
             <a href="{{ url_for('sobre') }}" class="sobre-btn">Sobre</a>
             <a href="{{ url_for('actors') }}" class="sobre-btn">Atores|Atrizes</a>
         </div>
 
-        <!-- Formulário de busca de filmes -->
         <form class="movie-search-form" action="{{ url_for('movies') }}" method="GET" style="margin-bottom: 40px;">
-            <!-- Adicionei uma margem inferior -->
             <div class="search-bar">
                 <input type="text" name="query" placeholder="Pesquise por um filme...">
                 <button type="submit"><i class="fas fa-search"></i></button>

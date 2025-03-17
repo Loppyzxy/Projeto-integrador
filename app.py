@@ -16,10 +16,10 @@ def search_actors(query, language='pt-BR'):
     try:
         response = requests.get(url, params=params)
         response.raise_for_status()
-        return response.json()  # Certifique-se de que isso retorna um dicionário
+        return response.json()  
     except requests.exceptions.RequestException as e:
         print(f"Erro ao buscar atores: {e}")
-        return {'results': []}  # Retorne um dicionário com uma lista vazia
+        return {'results': []}  
 
 def get_actor_movies(actor_id, language='pt-BR'):
     url = f"{BASE_URL}/person/{actor_id}/movie_credits"
@@ -89,7 +89,7 @@ def get_trailer(movie_id):
 @app.route('/actors', methods=['GET'])
 def actors():
     query = request.args.get('query')
-    actors_data = {'results': []}  # Inicialize como um dicionário
+    actors_data = {'results': []}  
     if query:
         actors_data = search_actors(query)
     return render_template('actors.html', actors=actors_data.get('results', []))
@@ -98,13 +98,12 @@ def actors():
 def actor_details(actor_id):
     actor_movies = get_actor_movies(actor_id)
     
-    # Obtenha os detalhes do ator
     url = f"{BASE_URL}/person/{actor_id}"
     params = {'api_key': API_KEY, 'language': 'pt-BR'}
     try:
         response = requests.get(url, params=params)
         response.raise_for_status()
-        actor_data = response.json()  # Obtenha os dados do ator
+        actor_data = response.json()  
     except requests.exceptions.RequestException as e:
         print(f"Erro ao buscar detalhes do ator: {e}")
         actor_data = {}
