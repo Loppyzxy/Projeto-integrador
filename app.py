@@ -6,6 +6,32 @@ app = Flask(__name__)
 API_KEY = '85315830bcf4d7203721cb322ec54c68'
 BASE_URL = 'https://api.themoviedb.org/3'
 
+def search_actors(query, language='pt-BR'):
+    url = f"{BASE_URL}/search/person"
+    params = {
+        'api_key': API_KEY,
+        'query': query,
+        'language': language
+    }
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        return response.json()  # Certifique-se de que isso retorna um dicionário
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao buscar atores: {e}")
+        return {'results': []}  # Retorne um dicionário com uma lista vazia
+
+def get_actor_movies(actor_id, language='pt-BR'):
+    url = f"{BASE_URL}/person/{actor_id}/movie_credits"
+    params = {'api_key': API_KEY, 'language': language}
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        return response.json().get('cast', [])
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao buscar filmes do ator: {e}")
+        return []
+
 def get_movie_data(query_params, language='pt-BR'):
     url = f"{BASE_URL}/discover/movie"
     query_params['api_key'] = API_KEY
@@ -59,6 +85,37 @@ def get_trailer(movie_id):
         print(f"Erro ao buscar trailer: {e}")
         return None
 
+
+@app.route('/actors', methods=['GET'])
+def actors():
+    query = request.args.get('query')
+    actors_data = {'results': []}  # Inicialize como um dicionário
+    if query:
+        actors_data = search_actors(query)
+    return render_template('actors.html', actors=actors_data.get('results', []))
+
+@app.route('/actor/<int:actor_id>', methods=['GET'])
+def actor_details(actor_id):
+    actor_movies = get_actor_movies(actor_id)
+    
+    # Obtenha os detalhes do ator
+    url = f"{BASE_URL}/person/{actor_id}"
+    params = {'api_key': API_KEY, 'language': 'pt-BR'}
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        actor_data = response.json()  # Obtenha os dados do ator
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao buscar detalhes do ator: {e}")
+        actor_data = {}
+
+    return render_template('actor_details.html', movies=actor_movies, actor=actor_data)
+
+
+@app.route('/sobre')
+def sobre():
+    return render_template('sobre.html')
+
 @app.route('/')
 def index():
     genres = get_genres()
@@ -66,7 +123,7 @@ def index():
 
 @app.route('/movies', methods=['GET'])
 def movies():
-    query = request.args.get('query')  # Recebe o parâmetro de pesquisa
+    query = request.args.get('query')  
     genre = request.args.get('genre')
     year = request.args.get('year')
     rating = request.args.get('rating')

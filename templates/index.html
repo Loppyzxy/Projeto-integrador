@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busca de Filmes</title>
+    <title>Movie Hunter | MVH</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3658/3658993.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
 
     <div class="container">
-        <h1>Movie Miner</h1>
+        <h1>MVH</h1>
 
-        <form class="movie-search-form" action="{{ url_for('movies') }}" method="GET">
+        <!-- Botão "Sobre" -->
+        <div class="header-buttons">
+            <a href="{{ url_for('sobre') }}" class="sobre-btn">Sobre</a>
+            <a href="{{ url_for('actors') }}" class="sobre-btn">Atores|Atrizes</a>
+        </div>
+
+        <!-- Formulário de busca de filmes -->
+        <form class="movie-search-form" action="{{ url_for('movies') }}" method="GET" style="margin-bottom: 40px;">
+            <!-- Adicionei uma margem inferior -->
             <div class="search-bar">
                 <input type="text" name="query" placeholder="Pesquise por um filme...">
                 <button type="submit"><i class="fas fa-search"></i></button>
@@ -22,7 +32,7 @@
             <select name="genre" id="genre">
                 <option value="">Selecione um Gênero</option>
                 {% for genre in genres %}
-                    <option value="{{ genre.id }}">{{ genre.name }}</option>
+                <option value="{{ genre.id }}">{{ genre.name }}</option>
                 {% endfor %}
             </select>
 
@@ -38,7 +48,10 @@
 
             <button type="submit">Buscar Filmes</button>
         </form>
+
+
     </div>
 
 </body>
+
 </html>

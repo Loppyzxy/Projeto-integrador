@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - MVH</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3658/3658993.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    /* Reset básico de margens e padding */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Mulish", sans-serif;
+    }
+
+    /* Corpo da página */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        line-height: 1.6;
+        padding: 2vh 5vw;
+    }
+
+    /* Estilo do container principal */
+    .about-container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 4vh 6vw;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    /* Título principal */
+    .about-container h1 {
+        font-size: 3.8rem;
+        color: rgb(22, 0, 0);
+        margin-bottom: 2vh;
+        text-align: center;
+    }
+
+    /* Títulos secundários */
+    .about-container h2 {
+        font-size: 2.5rem;
+        color: #444;
+        margin-top: 2vh;
+        margin-bottom: 1vh;
+        font-family: "Castoro Titling", serif;
+        text-align: center;
+        color: #2e0000;
+    }
+
+    /* Parágrafos */
+    .about-container p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5vh;
+        color: black;
+    }
+
+    .back-btn {
+        position: fixed;
+        top: 1vh;
+        left: 1vh;
+        background-color: rgb(255, 255, 255);
+        padding: 1vh 2.6vh;
+        border-radius: 1vh;
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        transition: background-color 0.3s, transform 0.2s;
+        z-index: 1000;
+        font-family: "Castoro Titling", serif;
+    }
+
+    .back-btn:hover {
+        background-color: rgb(24, 0, 0);
+        transform: scale(1.05);
+    }
+
+    /* Listas */
+    .about-container ul {
+        list-style-type: disc;
+        margin-left: 3vh;
+        margin-bottom: 2vh;
+    }
+
+    .about-container li {
+        font-size: 1.1rem;
+        color: #555;
+    }
+
+    /* Links */
+    .about-container a {
+        color: rgb(59, 0, 0);
+        text-decoration: none;
+    }
+
+    /* Responsividade */
+    @media screen and (max-width: 768px) {
+        body {
+            padding: 2vh 3vw;
+        }
+
+        .about-container {
+            padding: 3vh 4vw;
+        }
+
+        .about-container h1 {
+            font-size: 2rem;
+        }
+
+        .about-container h2 {
+            font-size: 1.5rem;
+        }
+
+        .about-container p,
+        .about-container li {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+<body>
+
+    <div class="about-container">
+        <h1>Sobre o MVH</h1>
+        <p>O <strong>MVH</strong> (Movie Hunter) é um projeto inovador desenvolvido para facilitar a busca de filmes, utilizando a API do <a href="https://www.themoviedb.org/" target="_blank">The Movie Database (TMDb)</a>. Com uma interface simples e funcional, o MVH permite que os usuários pesquisem filmes por nome, gênero, ano de lançamento, avaliação e muito mais. O objetivo é proporcionar uma experiência de busca rápida e intuitiva para os amantes de cinema.</p>
+
+        <h2>Funcionalidades</h2>
+        <p>Entre as principais funcionalidades do <strong>MVH</strong>, destacam-se:</p>
+        <ul>
+            <li><strong>Pesquisa Personalizada:</strong> Permite filtrar filmes por nome, gênero, ano, avaliação e outros parâmetros, facilitando a busca por títulos específicos.</li>
+            <li><strong>Interface Limpa e Responsiva:</strong> O design é adaptável a diversos dispositivos, proporcionando uma navegação intuitiva e agradável, seja em desktops, tablets ou smartphones.</li>
+            <li><strong>Exibição de Informações Detalhadas:</strong> Inclui dados sobre trailers, sinopses, elenco, e muito mais, permitindo que os usuários tenham uma visão completa sobre os filmes.</li>
+            <li><strong>Suporte a Múltiplos Idiomas:</strong> A plataforma suporta português, inglês e espanhol, tornando-a acessível a um público mais amplo.</li>
+            <li><strong>Carregamento Rápido:</strong> As animações e transições são otimizadas para garantir uma navegação suave e rápida, melhorando a experiência do usuário.</li>
+        </ul>
+
+        <h2>Sobre a API</h2>
+        <p>A aplicação utiliza a API do <a href="https://www.themoviedb.org/" target="_blank">The Movie Database (TMDb)</a> para fornecer informações sobre filmes, séries e celebridades. A API oferece uma grande variedade de dados, como:</p>
+        <ul>
+            <li>Detalhes sobre lançamentos, como datas, sinopses e trailers.</li>
+            <li>Informações sobre o elenco e a produção, incluindo biografias e filmografias.</li>
+            <li>Trailers, fotos e outros conteúdos multimídia que enriquecem a apresentação dos filmes.</li>
+            <li>Avaliações feitas por usuários e críticos, permitindo que os usuários façam escolhas informadas.</li>
+        </ul>
+
+        <h2>Objetivo do Projeto</h2>
+        <p>O objetivo deste projeto foi criar uma aplicação que facilite a pesquisa de filmes, oferecendo uma interface amigável e funcionalidades robustas. Durante o desenvolvimento, tive a oportunidade de aprender sobre integração com APIs externas, criação de interfaces interativas e utilização de animações para melhorar a experiência do usuário.</p>
+
+        <h2>Desafios Enfrentados</h2>
+        <p>Durante o desenvolvimento do MVH, vários desafios foram superados. Entre os principais, destacam-se:</p>
+        <ul>
+            <li><strong>Integração com a API:</strong> A primeira dificuldade foi entender e integrar as informações fornecidas pela API de maneira eficiente, garantindo que a aplicação fosse rápida e precisa.</li>
+            <li><strong>Interface Responsiva:</strong> Criar uma interface adaptável a diferentes tamanhos de tela foi um desafio importante, que foi resolvido com o uso de media queries e práticas de design responsivo.</li>
+            <li><strong>Performance:</strong> Garantir o carregamento rápido da aplicação mesmo com muitos dados sendo requisitados pela API.</li>
+        </ul>
+
+        <h2>Conclusão</h2>
+        <p>O <strong>MVH</strong> é um projeto em constante evolução, com o objetivo de proporcionar uma experiência de busca de filmes rápida e precisa. Através de melhorias contínuas e novas funcionalidades, o MVH se tornará uma ferramenta ainda mais poderosa para os amantes de filmes. Estou animado para ver como este projeto pode crescer e se adaptar às necessidades dos usuários, sempre buscando oferecer o melhor em termos de usabilidade e acesso à informação.</p>
+
+        <a href="{{ url_for('index') }}" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+    </div>
+
+</body>
+
+</html>
