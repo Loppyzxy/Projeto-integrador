@@ -47,13 +47,16 @@ body {
 }
 
 h1 {
-    font-weight: 500;
     text-align: center;
-    font-size: 4.5rem;
+    font-size: 4.9rem;
     color: rgb(255, 255, 255);
     margin-bottom: -1vh;
     font-family: "Castoro Titling", serif;
     animation: slide-in 0.7s ease-out forwards;
+    text-decoration: underline;
+    text-decoration-thickness: 0.1vh;
+    text-underline-offset: 1vh;
+    font-weight: bold;
 }
 
 .movie-search-form {
@@ -91,11 +94,14 @@ button:hover {
 
 .movies {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);  /* 3 colunas por linha */
     gap: 4vh;
     margin-top: 5vh;
+    justify-items: center;  /* Garantir que os itens fiquem centralizados */
     animation: fade-in 1s ease-in;
+    grid-auto-rows: 1fr;  /* Ajusta a altura das linhas automaticamente */
 }
+
 
 .movie {
     background-color: rgb(255, 255, 255);
@@ -109,6 +115,7 @@ button:hover {
     transform: translateY(-1vh);
     box-shadow: 0 0.2vh 3vh var(--color-shadow);
 }
+
 
 .movie img {
     width: 100%;
@@ -128,20 +135,21 @@ button:hover {
     text-shadow: -0.2vh 0.8vh 0vh rgba(0, 0, 0, 0.21);
 }
 
+
 .movie p {
     font-size: 0.9rem;
     color: rgb(58, 0, 0);
     margin: 0 3vh 2vh;
 }
-
 .movie a {
     font-size: 1rem;
     color: rgb(1, 18, 255);
     text-decoration: none;
-    margin:  3vh;
+    margin: 3vh;
     font-weight: 500;
     transition: color 0.3s;
 }
+
 
 .movie a:hover {
     color: rgb(51, 255, 0);
@@ -180,7 +188,9 @@ button:hover {
     border: 0.5vh dashed #ddd;
     height: 160vh;
     border-radius: 2vh;
+    visibility: hidden; /* Esconde os blocos vazios, mas mantém seu lugar */
 }
+
 
 @keyframes fade-in {
     0% {
@@ -316,3 +326,14 @@ button:hover {
 
 
 
+@media screen and (max-width: 768px) {
+    .movies {
+        grid-template-columns: repeat(2, 1fr);  /* 2 colunas para telas menores */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .movies {
+        grid-template-columns: 1fr;  /* 1 coluna para telas ainda menores */
+    }
+}

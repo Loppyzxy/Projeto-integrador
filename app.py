@@ -108,7 +108,12 @@ def actor_details(actor_id):
         print(f"Erro ao buscar detalhes do ator: {e}")
         actor_data = {}
 
-    return render_template('actor_details.html', movies=actor_movies, actor=actor_data)
+    # Informações adicionais do ator
+    actor_bio = actor_data.get('biography', 'Biografia não disponível.')
+    actor_birthday = actor_data.get('birthday', 'Data de nascimento não disponível.')
+    actor_place_of_birth = actor_data.get('place_of_birth', 'Local de nascimento não disponível.')
+
+    return render_template('actor_details.html', movies=actor_movies, actor=actor_data, biography=actor_bio, birthday=actor_birthday, place_of_birth=actor_place_of_birth)
 
 
 @app.route('/sobre')
