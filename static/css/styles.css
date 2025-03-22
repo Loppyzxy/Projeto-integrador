@@ -94,12 +94,12 @@ button:hover {
 
 .movies {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* 3 colunas por linha */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 4vh;
     margin-top: 5vh;
-    justify-items: center;  /* Garantir que os itens fiquem centralizados */
+    justify-items: center;  
     animation: fade-in 1s ease-in;
-    grid-auto-rows: 1fr;  /* Ajusta a altura das linhas automaticamente */
+    grid-auto-rows: 1fr; 
 }
 
 
@@ -188,7 +188,7 @@ button:hover {
     border: 0.5vh dashed #ddd;
     height: 160vh;
     border-radius: 2vh;
-    visibility: hidden; /* Esconde os blocos vazios, mas mantém seu lugar */
+    visibility: hidden;
 }
 
 
@@ -328,12 +328,53 @@ button:hover {
 
 @media screen and (max-width: 768px) {
     .movies {
-        grid-template-columns: repeat(2, 1fr);  /* 2 colunas para telas menores */
+        grid-template-columns: repeat(2, 1fr); 
     }
 }
 
 @media screen and (max-width: 480px) {
     .movies {
-        grid-template-columns: 1fr;  /* 1 coluna para telas ainda menores */
+        grid-template-columns: 1fr; 
     }
+}
+
+.favorite-star {
+    color: gold; 
+    cursor: pointer; 
+}
+
+ul.flashes {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+ul.flashes li {
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+ul.flashes li.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+ul.flashes li.info {
+  background-color: #bee5eb;
+  color: #0c5460;
+  border: 1px solid #b1d8e1;
+}
+
+ul.flashes li.warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+ul.flashes li.danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
 }
