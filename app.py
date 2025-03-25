@@ -25,7 +25,7 @@ def search_actors(query, language='pt-BR'):
 def get_actor_movies(actor_id):
     url = f"https://api.themoviedb.org/3/person/{actor_id}/movie_credits"
     params = {
-        'api_key': 'API_KEY',
+        'api_key': API_KEY,
         'language': 'pt-BR' 
     }
     

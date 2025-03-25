@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Castoro+Titling&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Hairline&display=swap');
+
+
 
 :root {
     --color-background: #ffffff;
@@ -21,7 +24,7 @@
 
 body {
     font-family: "Mulish", sans-serif;
-    background-image: url(https://4kwallpapers.com/images/wallpapers/the-batman-2022-movies-dc-comics-red-background-3840x2160-6775.jpg);
+    background-image: url('/static/icon/batman_wallpaper.jpg');
     color: var(--color-text);
     line-height: 1.6;
     display: flex;
@@ -30,7 +33,6 @@ body {
     min-height: 100vh;
     padding: 2vh;
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -245,7 +247,6 @@ button:hover {
     padding: 0.8vh 1.5vh;
     border-radius: 3vh;
     z-index: 1000;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
     width: auto;
     max-width: 30vw;
     transition: all 0.3s ease;
@@ -307,18 +308,17 @@ button:hover {
 .sobre-btn {
     background-color: rgb(44, 0, 0);
     color: var(--color-white);
-    padding: 1vh 5vh;
+    padding: 1.1vh 5vh;
     font-size: 1.6rem;
     text-decoration: none;
-    border-radius: 2vh;
+    border-radius: 1.6vh;
     font-family: "Castoro Titling", serif;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s, transform 0.3s;
 }
 
 .sobre-btn:hover {
-    background-color: rgb(27, 8, 8);
-    transform: scale(1.05);
+    background-color: rgb(17, 0, 0);
+    transform: scale(2.05);
 }
 
 
@@ -339,7 +339,7 @@ button:hover {
 }
 
 .favorite-star {
-    color: gold; 
+    color: rgb(85, 49, 49); 
     cursor: pointer; 
 }
 
