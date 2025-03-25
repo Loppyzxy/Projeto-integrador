@@ -45,7 +45,6 @@ body {
     border-radius: 6vh;
     backdrop-filter: blur(1.1vh);
     -webkit-backdrop-filter: blur(2vh);
-    box-shadow: 0 0 3vh rgba(0, 0, 0, 0.5);
 }
 
 h1 {
